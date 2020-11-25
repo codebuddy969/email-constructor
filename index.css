@@ -1,0 +1,230 @@
+html,
+body,
+div,
+ul,
+li,
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button,
+input,
+textarea {
+  color: #01181f;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  list-style: none;
+  font-weight: 400;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #cccccc;
+}
+
+.main {
+  width: calc(100% - 300px);
+}
+
+.row {
+  position: relative;
+}
+
+.content {
+  margin: 0 auto;
+  width: 600px;
+}
+
+.option-button {
+  width: 50%;
+  height: 50px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #cccccc;
+  background-color: lemonchiffon;
+}
+
+.option-button span {
+  top: 50px;
+  z-index: 1;
+  display: none;
+  position: absolute;
+  width: 300px;
+}
+
+.option-button img {
+  width: 100%;
+}
+
+.option-button:hover {
+  color: #ffffff;
+  background-color: #01181f;
+}
+
+.option-button:hover span {
+  display: block;
+}
+
+.ui-state-default {
+  cursor: pointer;
+  min-height: 50px;
+}
+
+.ui-state-default .ui-icon {
+  display: none;
+}
+
+#sortable {
+  width: 100% !important;
+}
+
+.configurator-container {
+  top: 0;
+  right: -20px;
+  position: absolute;
+}
+
+.configurator-container .configurator-remove {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 5px 0;
+}
+
+.configurator-container .remove {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.configurator-container .remove {
+  background-image: url(./core/icons/remove.png);
+}
+
+.configurator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.configurator .config {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.configurator .config {
+  background-image: url(./core/icons/gear.png);
+}
+
+.configurator .options {
+  width: 200px;
+  min-height: 50px;
+  display: none;
+  margin-top: 10px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.configurator input {
+  width: 100%;
+}
+
+.configurator:hover {
+  z-index: 1;
+}
+
+.configurator:hover .options {
+  display: block;
+}
+
+.configs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
+}
+
+.configs__name {
+  width: 50%;
+  font-size: 12px;
+}
+
+.configs__field {
+  width: 50%;
+  border: 1px solid #cccccc;
+}
+
+.operations {
+  top: 20px;
+  right: 20px;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.operations button {
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+  min-height: 50px;
+  margin-bottom: 2px;
+}
+
+.operations #file-export {
+  background-color: lemonchiffon;
+}
+
+.operations #console-export {
+  background-color: lawngreen;
+}
+
+.operations #clear-cookie {
+  background-color: lemonchiffon;
+}
+/*# sourceMappingURL=index.css.map */

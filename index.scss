@@ -1,0 +1,190 @@
+@charset "utf-8";
+
+$main-color: #01181f;
+
+html,
+body,
+div,
+ul,
+li,
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button,
+input,
+textarea {
+    color: $main-color;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    list-style: none;
+    font-weight: 400;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #cccccc;
+}
+
+.main {
+    width: calc(100% - 300px);
+}
+
+.row {
+    position: relative;
+}
+
+.content {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.option-button {
+    width: 50%;
+    height: 50px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #cccccc;
+    background-color: lemonchiffon;
+    span {
+        top: 50px;
+        z-index: 1;
+        display: none;
+        position: absolute;
+        width: 300px;
+    }
+    img {
+        width: 100%;
+    }
+    &:hover {
+        color: #ffffff;
+        background-color: $main-color;
+        span {
+            display: block;
+        }
+    }
+}
+
+.ui-state-default {
+    cursor: pointer;
+    min-height: 50px;
+    .ui-icon {
+        display: none;
+    }
+}
+
+#sortable {
+    width: 100% !important;
+}
+
+.configurator-container {
+    top: 0;
+    right: -20px;
+    position: absolute;
+    .configurator-remove {
+        display: flex;
+        justify-content: flex-end;
+        padding: 5px 0;
+    }
+    .remove {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: transparent;
+    }
+    .remove {
+        background-image: url(./core/icons/remove.png);
+    }
+}
+
+.configurator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    .config {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: transparent;
+    }
+    .config {
+        background-image: url(./core/icons/gear.png);
+    }
+    .options {
+        width: 200px;
+        min-height: 50px;
+        display: none;
+        margin-top: 10px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+    }
+    input {
+        width: 100%;
+    }
+    &:hover {
+        z-index: 1;
+        .options {
+            display: block;
+        }
+    }
+}
+
+.configs {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    &__name {
+        width: 50%;
+        font-size: 12px;
+    }
+    &__field {
+        width: 50%;
+        border: 1px solid #cccccc;
+    }
+}
+
+.operations {
+    top: 20px;
+    right: 20px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    button {
+        width: 100px;
+        padding: 10px;
+        cursor: pointer;
+        min-height: 50px;
+        margin-bottom: 2px;
+    }
+    #file-export {
+        background-color: lemonchiffon;
+    }
+    #console-export {
+        background-color: lawngreen;
+    }
+    #clear-cookie {
+        background-color: lemonchiffon;
+    }
+}
