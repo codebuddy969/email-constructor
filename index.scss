@@ -94,12 +94,14 @@ textarea {
 
 .configurator-container {
     top: 0;
-    right: -20px;
+    right: -60px;
     position: absolute;
+    display: flex;
+    align-items: center;
     .configurator-remove {
         display: flex;
         justify-content: flex-end;
-        padding: 5px 0;
+        padding: 5px 5px;
     }
     .remove {
         width: 20px;
@@ -187,4 +189,12 @@ textarea {
     #clear-cookie {
         background-color: lemonchiffon;
     }
+}
+
+tr {
+    display: flex;
+}
+
+td {
+    width: 100%;
 }

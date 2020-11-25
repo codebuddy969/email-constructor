@@ -44,6 +44,26 @@
             name: 'simple-text',
             template: `<?= file_get_contents('./templates/simple-text.php'); ?>`
         },
+        {
+            name: 'spacing',
+            template: `<?= file_get_contents('./templates/spacing.php'); ?>`
+        },
+        {
+            name: 'heading',
+            template: `<?= file_get_contents('./templates/heading.php'); ?>`
+        },
+        {
+            name: 'button',
+            template: `<?= file_get_contents('./templates/button.php'); ?>`
+        },
+        {
+            name: 'double-image',
+            template: `<?= file_get_contents('./templates/double-image.php'); ?>`
+        },
+        {
+            name: 'footer-1',
+            template: `<?= file_get_contents('./templates/footer-1.php'); ?>`
+        }
     ];
 
     var options = [
@@ -54,10 +74,19 @@
             name: 'simple-text'
         },
         {
-            name: 'button-centered'
+            name: 'spacing'
         },
         {
-            name: 'bullets-list'
+            name: 'heading'
+        },
+        {
+            name: 'button'
+        },
+        {
+            name: 'double-image'
+        },
+        {
+            name: 'footer-1'
         }
     ]
 
@@ -122,6 +151,8 @@
         var pattern = '';
         var optionsLength = Object.keys(optionsData).length - 1;
 
+        if (optionsLength > 0) {
+
         Object.entries(optionsData).forEach(([key, value], index) => {
             var template = '<div class="configs">'+
             '    <div class="configs__name">'+ key +'</div>'+
@@ -144,6 +175,10 @@
         var template = view.template.replace(regex, function(matched){
             return output[matched];
         });
+        
+        } else {
+            var template = view.template;
+        }
 
         var code = $.parseHTML(template);
 
@@ -411,7 +446,7 @@
         </div>
         <div class="sidebar"></div>
         <div class="main">
-            <table class="content" style="margin: 0 auto;" align="center" border="0" cellpadding="0" cellspacing="0">
+            <table class="content" style="margin: 0 auto; background-color: #ffffff;" align="center" border="0" cellpadding="0" cellspacing="0">
                 <tbody id="sortable"></tbody>            
             </table>
         </div>

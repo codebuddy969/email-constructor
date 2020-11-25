@@ -98,8 +98,14 @@ textarea {
 
 .configurator-container {
   top: 0;
-  right: -20px;
+  right: -60px;
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .configurator-container .configurator-remove {
@@ -109,7 +115,7 @@ textarea {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 5px 0;
+  padding: 5px 5px;
 }
 
 .configurator-container .remove {
@@ -226,5 +232,15 @@ textarea {
 
 .operations #clear-cookie {
   background-color: lemonchiffon;
+}
+
+tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+td {
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */
