@@ -38,10 +38,13 @@ textarea {
 
 .sidebar {
     width: 300px;
+    height: 100vh;
+    position: fixed;
     background-color: #cccccc;
 }
 
 .main {
+    margin: 0 0 0 auto;
     width: calc(100% - 300px);
 }
 
@@ -101,7 +104,7 @@ textarea {
     .configurator-remove {
         display: flex;
         justify-content: flex-end;
-        padding: 5px 5px;
+        padding: 5px;
     }
     .remove {
         width: 20px;
@@ -118,9 +121,11 @@ textarea {
 }
 
 .configurator {
+    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    background-color: lemonchiffon;
     .config {
         width: 20px;
         height: 20px;
@@ -139,7 +144,7 @@ textarea {
         display: none;
         margin-top: 10px;
         border-radius: 4px;
-        background-color: #ffffff;
+        background-color: lemonchiffon;
         border: 1px solid #cccccc;
     }
     input {
@@ -188,6 +193,10 @@ textarea {
     }
     #clear-cookie {
         background-color: lemonchiffon;
+    }
+    #save-template {
+        color: #ffffff;
+        background-color: red;
     }
 }
 

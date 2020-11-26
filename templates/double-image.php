@@ -11,13 +11,13 @@
                                 alt="email-image">
                     </a>
                         
-                    <div style="padding: 9px 0 0 0;
+                    <div style="padding: {{conf-text-paddings}};
                             font-family: Arial; 
-                            font-size: 14px; 
-                            line-height: 20px; 
+                            font-size: {{conf-fontsize}}; 
+                            line-height: {{conf-lineheight}}; 
                             font-weight: normal;
-                            text-align: center;
-                            letter-spacing: 0.33px; 
+                            text-align: {{conf-alignment}};
+                            letter-spacing: {{conf-spacing}}; 
                             color:#000000;">{{conf-first-text}}</div>
                 </td>
                 <td style="padding-left: 15px;">
@@ -30,13 +30,13 @@
                                 alt="email-image">
                     </a>
 
-                    <div style="padding: 9px 0 0 0;
+                    <div style="padding: {{conf-text-paddings}};
                             font-family: Arial; 
-                            font-size: 14px; 
-                            line-height: 20px; 
+                            font-size: {{conf-fontsize}}; 
+                            line-height: {{conf-lineheight}}; 
                             font-weight: normal;
                             text-align: center;
-                            letter-spacing: 0.33px; 
+                            letter-spacing: {{conf-spacing}}; 
                             color:#000000;">{{conf-second-text}}</div>
                 </td>
             </tbody>

@@ -12,7 +12,7 @@
                 fillcolor="#2181F8"
                 >
                 <w:anchorlock></w:anchorlock>
-                <center style="color: #ffffff; font-family: Arial; font-size: 14px; letter-spacing: 1.05px; font-weight: regular;">
+                <center style="color: #ffffff; font-family: Arial; font-size: {{conf-fontsize}}; letter-spacing: 1.05px; font-weight: regular;">
                 {{conf-text}}
                 </center>
             </v:roundrect>
@@ -33,7 +33,7 @@
                                     display: inline-block;"
                             href="{{conf-link}}"
                             target="_blank">
-                        <span style="color: #ffffff;">{{conf-text}}</span>
+                        <span style="color: #ffffff; font-size: {{conf-fontsize}}">{{conf-text}}</span>
                         </a>
                     </td>
                 </tr>

@@ -63,6 +63,14 @@
         {
             name: 'footer-1',
             template: `<?= file_get_contents('./templates/footer-1.php'); ?>`
+        },
+        {
+            name: 'ep-logo',
+            template: `<?= file_get_contents('./templates/ep-logo.php'); ?>`
+        },
+        {
+            name: 'bullet-row',
+            template: `<?= file_get_contents('./templates/bullet-row.php'); ?>`
         }
     ];
 
@@ -87,6 +95,12 @@
         },
         {
             name: 'footer-1'
+        },
+        {
+            name: 'ep-logo'
+        },
+        {
+            name: 'bullet-row'
         }
     ]
 
@@ -121,8 +135,13 @@
         $('#clear-cookie').on('click', function() {
             deleteCookie(window.location.host);
             if (getCookie(window.location.host) === "") {
-                alert('Cookie cleared');
+                alert('Template cleared');
             }
+        });
+
+        $('#save-template').on('click', function() {
+            setCookie(window.location.host, JSON.stringify(store), 365);
+            alert('Template saved');
         });
     }
 
@@ -300,7 +319,14 @@
         });
 
         $('body').find('.configurator-remove').on('click', function() {
+            var row = $(this).parents('.row');
+            var identifier = $($(row).children('tr')[0]).attr('id');
+
             $(this).parents('.row').remove();
+
+            delete store[identifier];
+
+            setCookie(window.location.host, JSON.stringify(store), 365);
         });
     }
 
@@ -442,7 +468,8 @@
         <div class="operations">
             <button id="file-export">File</button>
             <button id="console-export">Console</button>
-            <button id="clear-cookie">Clear cookie</button>
+            <button id="clear-cookie">Clear template</button>
+            <button id="save-template">Save template</button>
         </div>
         <div class="sidebar"></div>
         <div class="main">
