@@ -1,20 +1,33 @@
-html,
-body,
-div,
-ul,
-li,
-p,
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span,
-button,
-input,
-textarea {
+.sidebar div,
+.sidebar ul,
+.sidebar li,
+.sidebar p,
+.sidebar a,
+.sidebar h1,
+.sidebar h2,
+.sidebar h3,
+.sidebar h4,
+.sidebar h5,
+.sidebar h6,
+.sidebar span,
+.sidebar button,
+.sidebar input,
+.sidebar textarea,
+.operations div,
+.operations ul,
+.operations li,
+.operations p,
+.operations a,
+.operations h1,
+.operations h2,
+.operations h3,
+.operations h4,
+.operations h5,
+.operations h6,
+.operations span,
+.operations button,
+.operations input,
+.operations textarea {
   color: #01181f;
   font-size: 16px;
   margin: 0;
@@ -61,7 +74,7 @@ textarea {
   height: 50px;
   cursor: pointer;
   position: relative;
-  border: 1px solid #cccccc;
+  border: 1px solid #cccccc !important;
   background-color: lemonchiffon;
 }
 
@@ -165,7 +178,7 @@ textarea {
 }
 
 .configurator .options {
-  width: 200px;
+  width: 250px;
   min-height: 50px;
   display: none;
   margin-top: 10px;
@@ -176,6 +189,7 @@ textarea {
 
 .configurator input {
   width: 100%;
+  padding: 0;
 }
 
 .configurator:hover {
@@ -194,6 +208,12 @@ textarea {
       -ms-flex-align: center;
           align-items: center;
   padding: 5px;
+  border: none;
+  outline: none;
+  font-weight: 400;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .configs__name {

@@ -116,13 +116,22 @@
 
         /************************** Assign initial cookie based on domain name **************************/
 
-        if (getCookie(window.location.host) != '') {
-            store = JSON.parse(getCookie(window.location.host));
+        <?php if(file_exists("configs/{$_SERVER['HTTP_HOST']}.json")) { ?>
+            store = JSON.parse(`<?= file_get_contents("./configs/{$_SERVER['HTTP_HOST']}.json"); ?>`);
 
             for (const [key, data] of Object.entries(store)) {
                 generateCodeBlocks(key, data);
             }
-        }
+        <?php } ?>
+
+        
+        // if (getCookie(window.location.host) != '') {
+        //     store = JSON.parse(getCookie(window.location.host));
+
+        //     for (const [key, data] of Object.entries(store)) {
+        //         generateCodeBlocks(key, data);
+        //     }
+        // }
 
         $('#file-export').on('click', function() {
             exportTemplateToTheFile();
@@ -140,8 +149,7 @@
         });
 
         $('#save-template').on('click', function() {
-            setCookie(window.location.host, JSON.stringify(store), 365);
-            alert('Template saved');
+            storeConfiguration();
         });
     }
 
@@ -452,6 +460,25 @@
         element.click();
 
         document.body.removeChild(element);
+    }
+
+    function storeConfiguration() {
+
+        var config = {};
+        $('#sortable').children().each(function(index, row) {
+            var identified = $(row).find('tr').attr('id');
+            config[index + "-" + identified] = store[identified];
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/request.php",
+            data: {config: JSON.stringify(config), name: window.location.host},
+            dataType:'JSON', 
+            success: function(response){
+                alert(response);
+            }
+        });
     }
 
     /********************** Initializers **********************/
