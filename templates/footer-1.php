@@ -136,14 +136,9 @@
                                             line-height: 14px;
                                             color: #1155cc;
                                             text-decoration: underline !important;
-                                            text-decoration: underline;
-                                        "
+                                            text-decoration: underline;"
                                         href="https://www.exportportal.com/user/unsubscribe"
-                                        target="_blank"
-                                    >
-                                        Unsubscribe
-                                    </a>
-                                    from this Newsletter
+                                        target="_blank">Unsubscribe</a> from this Newsletter
                                 </td>
                             </tr>
                             <tr>
