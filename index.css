@@ -114,7 +114,7 @@
 
 .configurator-container {
   top: 0;
-  right: -60px;
+  right: -100px;
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -124,7 +124,8 @@
           align-items: center;
 }
 
-.configurator-container .configurator-remove {
+.configurator-container .configurator-remove,
+.configurator-container .configurator-duplicate {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -134,18 +135,23 @@
   padding: 5px;
 }
 
+.configurator-container .copy,
 .configurator-container .remove {
   width: 20px;
   height: 20px;
   cursor: pointer;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 85%;
   background-position: center;
   background-color: transparent;
 }
 
 .configurator-container .remove {
   background-image: url(./core/icons/remove.png);
+}
+
+.configurator-container .copy {
+  background-image: url(./core/icons/copy.png);
 }
 
 .configurator {

@@ -124,15 +124,6 @@
             }
         <?php } ?>
 
-        
-        // if (getCookie(window.location.host) != '') {
-        //     store = JSON.parse(getCookie(window.location.host));
-
-        //     for (const [key, data] of Object.entries(store)) {
-        //         generateCodeBlocks(key, data);
-        //     }
-        // }
-
         $('#file-export').on('click', function() {
             exportTemplateToTheFile();
         });
@@ -142,14 +133,15 @@
         });
 
         $('#clear-cookie').on('click', function() {
-            deleteCookie(window.location.host);
-            if (getCookie(window.location.host) === "") {
-                alert('Template cleared');
-            }
+            deleteConfiguration();
         });
 
         $('#save-template').on('click', function() {
             storeConfiguration();
+        });
+
+        $('body').on('click', '#duplicate-block', function() {
+            duplicateCodeBlock();
         });
     }
 
@@ -338,6 +330,10 @@
         });
     }
 
+    function duplicateCodeBlock() {
+        alert('asdasd');
+    }
+
     /********************** Helpers **********************/
 
     function exportTemplateToTheConsole() {
@@ -474,6 +470,18 @@
             type: "POST",
             url: "/request.php",
             data: {config: JSON.stringify(config), name: window.location.host},
+            dataType:'JSON', 
+            success: function(response){
+                alert(response);
+            }
+        });
+    }
+
+    function deleteConfiguration() {
+        $.ajax({
+            type: "POST",
+            url: "/request.php",
+            data: {template_name: window.location.host},
             dataType:'JSON', 
             success: function(response){
                 alert(response);

@@ -110,26 +110,31 @@ $main-color: #01181f;
 
 .configurator-container {
     top: 0;
-    right: -60px;
+    right: -100px;
     position: absolute;
     display: flex;
     align-items: center;
-    .configurator-remove {
+    .configurator-remove,
+    .configurator-duplicate {
         display: flex;
         justify-content: flex-end;
         padding: 5px;
     }
+    .copy,
     .remove {
         width: 20px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 85%;
         background-position: center;
         background-color: transparent;
     }
     .remove {
         background-image: url(./core/icons/remove.png);
+    }
+    .copy {
+        background-image: url(./core/icons/copy.png);
     }
 }
 
