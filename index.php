@@ -125,19 +125,19 @@
         <?php } ?>
 
         $('#file-export').on('click', function() {
-            exportTemplateToTheFile();
+            helpers.exportTemplate("file");
         });
 
         $('#console-export').on('click', function() {
-            exportTemplateToTheConsole();
+            helpers.exportTemplate("console");
         });
 
         $('#clear-cookie').on('click', function() {
-            deleteConfiguration();
+            helpers.deleteConfiguration();
         });
 
         $('#save-template').on('click', function() {
-            storeConfiguration();
+            helpers.storeConfiguration();
         });
 
         $('body').on('click', '#duplicate-block', function() {
@@ -235,7 +235,7 @@
                 if($.inArray(el, optionsCleaned) === -1) optionsCleaned.push(el);
             });
 
-            var identifier = generateUUID();
+            var identifier = helpers.generateUUID();
             var code = $.parseHTML(view.template);
             var options = $.parseHTML(config.template);
             var container = $(options).find('.options');
@@ -315,7 +315,7 @@
 
             $(element).replaceWith(code);
 
-            setCookie(window.location.host, JSON.stringify(store), 365);
+            helpers.setCookie(window.location.host, JSON.stringify(store), 365);
         });
 
         $('body').find('.configurator-remove').on('click', function() {
@@ -326,62 +326,116 @@
 
             delete store[identifier];
 
-            setCookie(window.location.host, JSON.stringify(store), 365);
+            helpers.setCookie(window.location.host, JSON.stringify(store), 365);
         });
-    }
-
-    function duplicateCodeBlock() {
-        alert('asdasd');
     }
 
     /********************** Helpers **********************/
 
-    function exportTemplateToTheConsole() {
+    var helpers = {
+        exportTemplate: function(type) {
+            var content = '';
+            var container = $('#sortable');
+            var view = templates.filter(data => data.name === "core-table")[0];
 
-        var content = '';
-        var container = $('#sortable');
-        var view = templates.filter(data => data.name === "core-table")[0];
+            $(container).children().each(function(index, element) {
+                $(element).find('tr').removeAttr('id');
+                content += $(element).find('tr').prop('outerHTML');
+            });
 
-        $(container).children().each(function(index, element) {
-            content += $(element).find('tr').prop('outerHTML');
-        });
+            var re = /{{content}}/gi;
 
-        var re = /{{content}}/gi;
+            var template = view.template.replace(re, content);
 
-        var template = view.template.replace(re, content);
+            switch (type) {
+                case "file":
+                    helpers.downloadFile("Template.txt", template);
+                    break;
+                case "console":
+                default:
+                    console.log(template);
+                    break;
+            }
+        },
+        generateUUID: function() {
+            var s = [];
+            var hexDigits = "0123456789abcdef";
+            for (var i = 0; i < 36; i++) {
+                s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+            }
+            s[14] = "4";
+            s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);
+            s[8] = s[13] = s[18] = s[23] = "-";
 
-        console.log(template);
-    }
+            var uuid = s.join("");
+            return uuid;
+        },
+        setCookie: function(name, value, days) {
+            var d = new Date;
+            d.setTime(d.getTime() + 24*60*60*1000*days);
+            document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+        },
+        getCookie: function(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        },
+        deleteCookie: function(name) {
+            setCookie(name, '', -1);
+        },
+        downloadFile: function(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
 
-    function exportTemplateToTheFile() {
+            element.style.display = 'none';
+            document.body.appendChild(element);
 
-        var content = '';
-        var container = $('#sortable');
-        var view = templates.filter(data => data.name === "core-table")[0];
+            element.click();
 
-        $(container).children().each(function(index, element) {
-            content += $(element).find('tr').prop('outerHTML');
-        });
+            document.body.removeChild(element);
+        },
+        storeConfiguration: function() {
+            var config = {};
+            $('#sortable').children().each(function(index, row) {
+                var identified = $(row).find('tr').attr('id');
+                config[index + "-" + identified] = store[identified];
+            });
 
-        var re = /{{content}}/gi;
-
-        var template = view.template.replace(re, content);
-
-        download("Template.txt", template);
-    }
-
-    function generateUUID() {
-        var s = [];
-        var hexDigits = "0123456789abcdef";
-        for (var i = 0; i < 36; i++) {
-            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+            $.ajax({
+                type: "POST",
+                url: "/request.php",
+                data: {config: JSON.stringify(config), name: window.location.host},
+                dataType:'JSON', 
+                success: function(response){
+                    alert(response);
+                }
+            });
+        },
+        deleteConfiguration: function() {
+            $.ajax({
+                type: "POST",
+                url: "/request.php",
+                data: {template_name: window.location.host},
+                dataType:'JSON', 
+                success: function(response){
+                    alert(response);
+                }
+            });
+        },
+        duplicateCodeBlock: function() {
+            alert('asdasd');
         }
-        s[14] = "4";
-        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);
-        s[8] = s[13] = s[18] = s[23] = "-";
-
-        var uuid = s.join("");
-        return uuid;
     }
 
     var getFromBetween = {
@@ -419,75 +473,6 @@
         }
     };
 
-    function setCookie(name, value, days) {
-        var d = new Date;
-        d.setTime(d.getTime() + 24*60*60*1000*days);
-        document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
-    }
-
-    function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-
-    function deleteCookie(name) {
-        setCookie(name, '', -1);
-    }
-
-    function download(filename, text) {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
-    }
-
-    function storeConfiguration() {
-
-        var config = {};
-        $('#sortable').children().each(function(index, row) {
-            var identified = $(row).find('tr').attr('id');
-            config[index + "-" + identified] = store[identified];
-        });
-
-        $.ajax({
-            type: "POST",
-            url: "/request.php",
-            data: {config: JSON.stringify(config), name: window.location.host},
-            dataType:'JSON', 
-            success: function(response){
-                alert(response);
-            }
-        });
-    }
-
-    function deleteConfiguration() {
-        $.ajax({
-            type: "POST",
-            url: "/request.php",
-            data: {template_name: window.location.host},
-            dataType:'JSON', 
-            success: function(response){
-                alert(response);
-            }
-        });
-    }
 
     /********************** Initializers **********************/
 

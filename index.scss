@@ -2,6 +2,11 @@
 
 $main-color: #01181f;
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .sidebar div,
 .sidebar ul,
 .sidebar li,
@@ -226,8 +231,7 @@ $main-color: #01181f;
 
 tr {
     display: flex;
-}
-
-td {
-    width: 100%;
+    td:only-child {
+        width: 100%;
+    }
 }
